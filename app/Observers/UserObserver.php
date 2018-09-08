@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\User;
+use App\Models\User;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored

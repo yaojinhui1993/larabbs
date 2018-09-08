@@ -14,7 +14,7 @@ use Illuminate\Support\Carbon;
 |
 */
 
-$factory->define(App\User::class, function (Faker $faker) {
+$factory->define(App\Models\User::class, function (Faker $faker) {
     $now = Carbon::now()->toDateTimeString();
     return [
         'name' => $faker->name,
