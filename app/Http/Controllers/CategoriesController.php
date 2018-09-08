@@ -46,7 +46,7 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
-        $topics = $category->topics()->paginate(20);
+        $topics = $category->topics()->withOrder(request()->order)->paginate(20);
 
         return view('topics.index', [
             'category' => $category,
