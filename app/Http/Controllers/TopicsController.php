@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Topic;
+use App\Models\Category;
 use App\Http\Requests\TopicRequest;
+use Illuminate\Support\Facades\Auth;
 
 class TopicsController extends Controller
 {
@@ -25,12 +27,14 @@ class TopicsController extends Controller
 
     public function create(Topic $topic)
     {
-        return view('topics.create_and_edit', compact('topic'));
+        $categories = Category::get();
+        return view('topics.create_and_edit', compact('topic', 'categories'));
     }
 
     public function store(TopicRequest $request)
     {
-        $topic = Topic::create($request->all());
+        $topic = Auth::user()->topics()->create($request->all());
+        // $topic = Topic::create($request->all());
         return redirect()->route('topics.show', $topic->id)->with('message', 'Created successfully.');
     }
 
