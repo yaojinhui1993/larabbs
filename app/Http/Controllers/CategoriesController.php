@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -46,7 +46,12 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        $topics = $category->topics()->paginate(20);
+
+        return view('topics.index', [
+            'category' => $category,
+            'topics' => $topics,
+        ]);
     }
 
     /**
