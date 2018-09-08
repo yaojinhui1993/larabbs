@@ -11,3 +11,11 @@
 7. Form image upload.
 8. Image cutter, by using **intervention/image**
 9. **Policy**
+
+## Topic List
+
+1. Use migration to seed data
+2. Add **summerblue/generator**, and generate code
+3. Add **barryvdn/laravel-debugbar** to show debugbar
+4. Add **hieu/active** to know that where element should add active class.
+5. Eloquent Scope
