@@ -31,3 +31,10 @@
 7. Move translate slug to queue job
 8. Use **laravel/horizon** to monitor queues
 9. Use **predis/predis** for queue driver
+
+## Topic Replies
+
+1. Trait method reload
+2. Notification via database and email
+3. `includeWhen` in blade
+4. delete model event

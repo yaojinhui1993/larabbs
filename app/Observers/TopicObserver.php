@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Models\Topic;
 use App\Jobs\TranslateSlug;
-use App\Handlers\SlugTranslateHandler;
 
 // creating, created, updating, updated, saving,
 // saved,  deleting, deleted, restoring, restored
@@ -21,7 +20,6 @@ class TopicObserver
     {
         if (! $topic->slug) {
             TranslateSlug::dispatch($topic);
-            // $topic->slug = (new SlugTranslateHandler())->translate($topic->title);
         }
     }
 
