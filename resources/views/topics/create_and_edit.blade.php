@@ -68,7 +68,6 @@
 
 <script>
     $(function () {
-        new Simditor({ textarea: $('#editor')})
         var editor = new Simditor({
             textarea: $('#editor'),
             upload: {
