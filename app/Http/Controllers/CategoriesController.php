@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Link;
+use App\Models\User;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -44,17 +46,21 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Category $category, User $user, Link $link)
     {
         $topics = $category->topics()->withOrder(request()->order)->paginate(20);
 
         // 活跃用户列表
         $active_users = $user->getActiveUsers();
 
+        $links = $link->getAllCached();
+
+
         return view('topics.index', [
             'category' => $category,
             'topics' => $topics,
-            'active_users' => $active_users
+            'active_users' => $active_users,
+            'links' => $links
         ]);
     }
 
