@@ -46,3 +46,11 @@
 3. `Gate::before()`
 4. Use "viacreative/sudo-su" for quickly change user login
 5. Config site information.
+
+## Misc
+
+1. Cache
+2. Artisan command
+3. Trait
+4. Foreign reference
+5. Redis hSet and hGet
