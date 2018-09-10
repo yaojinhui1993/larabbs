@@ -38,3 +38,11 @@
 2. Notification via database and email
 3. `includeWhen` in blade
 4. delete model event
+
+## Role and Permissions
+
+1. Use "spatie/laravel-permission" for permission management.
+2. Use "summerblue/administrator" for manage admin.
+3. `Gate::before()`
+4. Use "viacreative/sudo-su" for quickly change user login
+5. Config site information.
