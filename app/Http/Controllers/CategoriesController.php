@@ -48,9 +48,13 @@ class CategoriesController extends Controller
     {
         $topics = $category->topics()->withOrder(request()->order)->paginate(20);
 
+        // 活跃用户列表
+        $active_users = $user->getActiveUsers();
+
         return view('topics.index', [
             'category' => $category,
             'topics' => $topics,
+            'active_users' => $active_users
         ]);
     }
 
