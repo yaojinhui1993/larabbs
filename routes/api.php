@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Dingo\Api\Routing\Router;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +13,11 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+$api = resolve(Router::class);
+
+$api->version('v1', [
+    'namespace' => 'App\Http\Controllers\Api'
+], function ($api) {
+    $api->post('verificationCodes', 'VerificationCodesController@store')
+        ->name('api.verificationCodes.store');
 });
