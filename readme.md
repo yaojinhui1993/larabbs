@@ -59,3 +59,19 @@
 
 1. PostMan
 2. **DingoApi**
+
+## Phone Register
+
+1. **overture/easysms**
+2. Create service provider for easysms
+3. Phone register sequence
+4. Some response method
+    1. `$this->response->array([])`
+    2. `$this->response->array([])->setStatusCode(201)`
+    3. `$this->response->errorInternal()`
+    4. `$this->response->error('', 422)`
+    5. `$this->response->created()`
+    6. `$this->response->errorUnauthorzide()`
+5. Add rate throttle, and config items for rate limit
+6. **gregwar/captcha**
+7. Verification attributes
