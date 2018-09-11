@@ -75,3 +75,10 @@
 5. Add rate throttle, and config items for rate limit
 6. **gregwar/captcha**
 7. Verification attributes
+
+## Thirdly Login
+
+1. Wechat oauth2 login flow
+2. *socialiteproviders/weixin*
+3. JWT
+4. *tymon/jwt-auth*
