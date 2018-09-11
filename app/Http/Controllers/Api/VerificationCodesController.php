@@ -10,7 +10,15 @@ class VerificationCodesController extends Controller
 {
     public function store(VerificationCodesRequest $request)
     {
-        $phone = $request->phone;
+        if (! $captchaData = Cache::get($request->captcha_key)) {
+            return $this->response->error('图片验证码已失效', 422);
+        }
+        if (! hash_equals((string)$captchaData['code'], (string)$request->captcha_code)) {
+            Cache::forget($request->captcha_key);
+            return $this->response->errorUnauthoried('验证码错误');
+        }
+
+        $phone = $captchaData['phone'];
 
 
         try {
