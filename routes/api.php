@@ -56,6 +56,7 @@ $api->version('v1', [
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('topics.destroy');
 
             $api->post('topics/{topic}/replies', 'RepliesController@store')->name('topics.replies.index');
+            $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')->name('topics.replies.destroy');
         });
 
         // guest
