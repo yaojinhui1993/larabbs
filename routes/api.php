@@ -17,7 +17,7 @@ $api = resolve(Router::class);
 
 $api->version('v1', [
     'namespace' => 'App\Http\Controllers\Api',
-    'middleware' => 'serializer:array'
+    'middleware' => [ 'serializer:array', 'bindings']
 ], function ($api) {
     $api->group([
         'name' => 'api.',
@@ -51,6 +51,7 @@ $api->version('v1', [
             $api->post('images', 'ImagesController@store')->name('images.store');
 
             $api->post('topics', 'TopicsController@store')->name('topics.store');
+            $api->patch('topics/{topic}', 'TopicsController@update')->name('topics.update');
         });
 
         $api->group([], function ($api) {
