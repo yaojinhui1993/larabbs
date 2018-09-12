@@ -82,3 +82,10 @@
 2. *socialiteproviders/weixin*
 3. JWT
 4. *tymon/jwt-auth*
+
+## User Data
+
+1. *Fractal* transformer
+2. Get data in api
+3. Update data in api
+4. Upload file in api
