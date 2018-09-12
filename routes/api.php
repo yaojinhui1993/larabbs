@@ -49,6 +49,8 @@ $api->version('v1', [
             $api->patch('user', 'UsersController@update')->name('user.update');
 
             $api->post('images', 'ImagesController@store')->name('images.store');
+
+            $api->post('topics', 'TopicsController@store')->name('topics.store');
         });
 
         $api->group([], function ($api) {
