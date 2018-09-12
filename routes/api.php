@@ -52,10 +52,14 @@ $api->version('v1', [
 
             $api->post('topics', 'TopicsController@store')->name('topics.store');
             $api->patch('topics/{topic}', 'TopicsController@update')->name('topics.update');
+            $api->delete('topics/{topic}', 'TopicsController@destroy')->name('topics.destroy');
         });
 
         $api->group([], function ($api) {
             $api->get('categories', 'CategoriesController@index')->name('categories.index');
+
+            $api->get('topics', 'TopicsController@index')->name('topics.index');
+            $api->get('users/{user}/topics', 'TopicsController@userIndex')->name('users.topics.index');
         });
     });
 });
