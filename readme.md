@@ -89,3 +89,9 @@
 2. Get data in api
 3. Update data in api
 4. Upload file in api
+
+## Topic Data
+
+1. Category index
+2. Topic create, update, delete, index, show
+3. *overtrue/laravel-query-logger* to see N+1 question
