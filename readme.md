@@ -102,3 +102,8 @@
 2. Notification index, stats, markAsRead
 3. Fractal multiple layer relationship and Eager loading
 4. Patch have no idempotent, mark all notification as read use `patch` method.
+
+## Permissions
+
+1. `getAllPermissions` for `spatie/laravel-permission` package
+2. Use `include` in transformers.
