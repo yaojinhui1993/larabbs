@@ -46,6 +46,9 @@ $api->version('v1', [
         $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->get('user', 'UsersController@me')
                 ->name('user.show');
+            $api->patch('user', 'UsersController@update')->name('user.update');
+
+            $api->post('images', 'ImagesController@store')->name('images.store');
         });
     });
 });
