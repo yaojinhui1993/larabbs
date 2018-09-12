@@ -60,6 +60,7 @@ $api->version('v1', [
 
             $api->get('user/notifications', 'NotificationsController@index')->name('user.notifications.index');
             $api->get('user/notifications/stat', 'NotificationsController@stat')->name('user.notifications.stat');
+            $api->patch('user/notifications', 'NotificationsController@read')->name('user.notifications.read');
         });
 
         // guest
