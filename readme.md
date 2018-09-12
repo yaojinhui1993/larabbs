@@ -107,3 +107,7 @@
 
 1. `getAllPermissions` for `spatie/laravel-permission` package
 2. Use `include` in transformers.
+
+## Others
+
+1. Add more api.
