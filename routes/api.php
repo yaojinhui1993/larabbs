@@ -16,7 +16,8 @@ use Dingo\Api\Routing\Router;
 $api = resolve(Router::class);
 
 $api->version('v1', [
-    'namespace' => 'App\Http\Controllers\Api'
+    'namespace' => 'App\Http\Controllers\Api',
+    'middleware' => 'serializer:array'
 ], function ($api) {
     $api->group([
         'name' => 'api.',
@@ -41,5 +42,10 @@ $api->version('v1', [
             ->name('authorizations.update');
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('authorizations.destroy');
+
+        $api->group(['middleware' => 'api.auth'], function ($api) {
+            $api->get('user', 'UsersController@me')
+                ->name('user.show');
+        });
     });
 });

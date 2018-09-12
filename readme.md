@@ -76,7 +76,7 @@
 6. **gregwar/captcha**
 7. Verification attributes
 
-## Thirdly Login
+## Thirdly Login and JWT
 
 1. Wechat oauth2 login flow
 2. *socialiteproviders/weixin*
