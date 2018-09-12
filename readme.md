@@ -111,3 +111,19 @@
 ## Others
 
 1. Add more api.
+
+## Advance Training Wrapping Up
+
+1. Dingo API
+2. JWT for user authentication
+3. Fractal
+4. Send SMS
+5. Create service provider
+6. RESTful api design
+7. Change database column
+8. Create middleware
+9. APi aate limites
+10. Thirdly part login: social provider package
+11. OAuth2
+12. Passport
+13. API test by Post Man.
