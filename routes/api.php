@@ -43,6 +43,7 @@ $api->version('v1', [
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('authorizations.destroy');
 
+        // auth
         $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->get('user', 'UsersController@me')
                 ->name('user.show');
@@ -53,8 +54,11 @@ $api->version('v1', [
             $api->post('topics', 'TopicsController@store')->name('topics.store');
             $api->patch('topics/{topic}', 'TopicsController@update')->name('topics.update');
             $api->delete('topics/{topic}', 'TopicsController@destroy')->name('topics.destroy');
+
+            $api->post('topics/{topic}/replies', 'RepliesController@store')->name('topics.replies.index');
         });
 
+        // guest
         $api->group([], function ($api) {
             $api->get('categories', 'CategoriesController@index')->name('categories.index');
 
