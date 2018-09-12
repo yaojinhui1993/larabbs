@@ -74,6 +74,8 @@ $api->version('v1', [
             $api->get('topics/{topic}', 'TopicsController@show')->name('topics.show');
             $api->get('/topics/{topic}/replies', 'RepliesController@index')->name('topics.replies.index');
             $api->get('/users/{user}/replies', 'RepliesController@userIndex')->name('users.replies.index');
+
+            $api->get('/links', 'LinksController@index')->name('links.index');
         });
     });
 });
