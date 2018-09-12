@@ -59,6 +59,7 @@ $api->version('v1', [
             $api->delete('topics/{topic}/replies/{reply}', 'RepliesController@destroy')->name('topics.replies.destroy');
 
             $api->get('user/notifications', 'NotificationsController@index')->name('user.notifications.index');
+            $api->get('user/notifications/stat', 'NotificationsController@stat')->name('user.notifications.stat');
         });
 
         // guest
