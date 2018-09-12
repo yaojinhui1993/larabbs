@@ -50,5 +50,9 @@ $api->version('v1', [
 
             $api->post('images', 'ImagesController@store')->name('images.store');
         });
+
+        $api->group([], function ($api) {
+            $api->get('categories', 'CategoriesController@index')->name('categories.index');
+        });
     });
 });
