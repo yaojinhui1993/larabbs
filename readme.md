@@ -95,3 +95,10 @@
 1. Category index
 2. Topic create, update, delete, index, show
 3. *overtrue/laravel-query-logger* to see N+1 question
+
+## Reply Data and Notification
+
+1. Reply store, delete, index
+2. Notification index, stats, markAsRead
+3. Fractal multiple layer relationship and Eager loading
+4. Patch have no idempotent, mark all notification as read use `patch` method.
