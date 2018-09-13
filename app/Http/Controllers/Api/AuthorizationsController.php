@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Requests\Api\AuthorizationRequest;
+use App\Http\Requests\Api\WeappAuthorizationRequest;
 use App\Http\Requests\Api\SocialAuthorizationRequest;
 
 class AuthorizationsController extends Controller
@@ -24,6 +25,52 @@ class AuthorizationsController extends Controller
 
         return $this->respondWithToken($token)->setStatusCode(201);
     }
+
+    /**
+     * todo Implement two functions, I think it should be refactor
+     *
+     * @param AuthorizationRequest $request
+     * @return void
+     */
+    public function weappStore(WeappAuthorizationRequest $request)
+    {
+        $code = $request->code;
+
+        $data = \EasyWeChat::miniProgram()->auth->session($code);
+
+        if (isset($data['errcode'])) {
+            return $this->response->errorUnauthorized('code 不正确');
+        }
+        $attributes['weixin_session_key'] = $data['session_key'];
+
+        $user = User::where('weapp_openid', $data['openid'])->first();
+
+        if (! $user) {
+            if (! $request->username) {
+                return $this->response->errorForbidden('用户不存在');
+            }
+
+            $username = $request->username;
+
+            filter_var($username, FILTER_VALIDATE_EMAIL) ? $credentials['email'] = $username : $credentials['phone'] = $username;
+
+            $credentials['password'] = $request->password;
+
+            if (! Auth::guard('api')->once($credentials)) {
+                return $this->response->errorUnauthorized('用户名或密码错误');
+            }
+
+            $user = Auth::guard('api')->getUser();
+            $attributes['weapp_openid'] = $data['openid'];
+        }
+
+        $user->update($attributes);
+
+        $token = Auth::guard('api')->fromUser($user);
+
+        return $this->respondWithToken($token)->setStatusCode(201);
+    }
+
 
     public function update()
     {

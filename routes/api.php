@@ -38,6 +38,7 @@ $api->version('v1', [
             ->name('socials.authorizations.store');
         $api->post('authorizations', 'AuthorizationsController@store')
             ->name('authorizations.store');
+        $api->post('weapp/authorizations', 'AuthorizationsController@weappStore')->name('weapp.authorizations.store');
         $api->put('authorizations/current', 'AuthorizationsController@update')
             ->name('authorizations.update');
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
