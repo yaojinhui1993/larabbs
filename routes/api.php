@@ -39,6 +39,8 @@ $api->version('v1', [
         $api->post('authorizations', 'AuthorizationsController@store')
             ->name('authorizations.store');
         $api->post('weapp/authorizations', 'AuthorizationsController@weappStore')->name('weapp.authorizations.store');
+        $api->post('weapp/users', 'UsersController@weappStore')->name('weapp.users.store');
+
         $api->put('authorizations/current', 'AuthorizationsController@update')
             ->name('authorizations.update');
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')

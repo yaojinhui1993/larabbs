@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use EasyWeChat;
 use App\Models\User;
 use App\Models\Image;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,47 @@ class UsersController extends Controller
                 'token_type' => 'Bearer',
                 'expires_in' => Auth::guard('api')->factory()->getTTL() * 60,
             ]);
+    }
+
+    public function weappStore(UserRequest $request)
+    {
+        $verifyData = Cache::get($request->verification_key);
+
+        if (! $verifyData) {
+            return $this->response->error('验证码已失效', 422);
+        }
+
+        if (! hash_equals((string)$verifyData['code'], (string)$request->verification_code)) {
+            return $this->response->errorUnauthorized('验证码错误');
+        }
+
+        $data = EasyWeChat::miniProgram()->auth->session($request->code);
+
+        if (isset($data['errcode'])) {
+            return $this->response->errorUnauthorized('code 不正确');
+        }
+
+        if (User::where('weapp_open_id', $data['open_id'])->exists()) {
+            return $this->response->errorForbidden('微信已绑定其他用户，请直接登录');
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'phone' => $verifyData['phone'],
+            'password' => bcrypt($request->password),
+            'weapp_openid' => $data['openid'],
+            'weixin_session_key' => $data['session_key'],
+        ]);
+
+        Cache::forget($request->verification_key);
+
+        return $this->response->item($user, new UserTransformer)
+            ->setMeta([
+                'access_token' => \Auth::guard('api')->fromUser($user),
+                'token_type' => 'Bearer',
+                'expires_in' => \Auth::guard('api')->factory()->getTTL() * 60
+            ])
+            ->setStatusCode(201);
     }
 
     public function me()
