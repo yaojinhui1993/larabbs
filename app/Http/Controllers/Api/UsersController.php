@@ -77,7 +77,7 @@ class UsersController extends Controller
             return $this->response->errorUnauthorized('code 不正确');
         }
 
-        if (User::where('weapp_open_id', $data['open_id'])->exists()) {
+        if (User::where('weapp_openid', $data['openid'])->exists()) {
             return $this->response->errorForbidden('微信已绑定其他用户，请直接登录');
         }
 

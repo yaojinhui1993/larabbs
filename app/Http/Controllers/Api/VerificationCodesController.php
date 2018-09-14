@@ -15,7 +15,7 @@ class VerificationCodesController extends Controller
         }
         if (! hash_equals((string)$captchaData['code'], (string)$request->captcha_code)) {
             Cache::forget($request->captcha_key);
-            return $this->response->errorUnauthoried('验证码错误');
+            return $this->response->errorUnauthorized('验证码错误');
         }
 
         $phone = $captchaData['phone'];
@@ -41,7 +41,7 @@ class VerificationCodesController extends Controller
         return $this->response->array([
             'key' => $key,
             'expired_at' => $expireAt->toDateTimeString(),
-        ]);
+        ])->setStatusCode(201);
     }
 
     protected function sendSms()
