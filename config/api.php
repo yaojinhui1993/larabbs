@@ -232,7 +232,7 @@ return [
     'rate_limits' => [
         'access' => [
             'expires' => env('RATE_LIMITS_EXPIRES', 1),
-            'limit' => env('RATE_LIMITS', 60),
+            'limit' => env('RATE_LIMITS', 1000),
         ],
         'sign' => [
             'expires' => env('SIGN_RATE_LIMITS_EXPIRES', 1),

@@ -32,8 +32,10 @@ class UserRequest extends FormRequest
                     'verification_key' => 'required|string',
                     'verification_code' => 'required|string',
                 ];
+            case 'PUT':
             case 'PATCH':
                 $userId = Auth::guard('api')->id();
+                info('UserId: ' . $userId);
 
                 return [
                     'name' => 'between:3,25|regex:/^[A-Za-z0-9\-\_]+$/|unique:users,name,' . $userId,

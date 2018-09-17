@@ -46,11 +46,14 @@ $api->version('v1', [
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('authorizations.destroy');
 
+        $api->get('/users/{user}', 'UsersController@show')->name('users.show');
+
         // auth
         $api->group(['middleware' => 'api.auth'], function ($api) {
             $api->get('user', 'UsersController@me')
                 ->name('user.show');
             $api->patch('user', 'UsersController@update')->name('user.update');
+            $api->put('user', 'UsersController@update')->name('user.update');
 
             $api->post('images', 'ImagesController@store')->name('images.store');
 
